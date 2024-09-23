@@ -1,7 +1,19 @@
-<!-- {{title}} <br>
-{{ age }} <br>
-{{a.id}} <br>
-{{getName()}} <br>
-{{test('test')}} <br> -->
+<div class="min-h-screen bg-gray-100 flex flex-col items-center">
+  <h1 class="text-3xl font-bold mb-8 text-gray-800">Choose a Day</h1>
 
-<pre class="bg-blue-500 text-xl text-white">{{greet}} {{greet2}} {{greetDefault}} {{result}} {{result2}}</pre>
+  <select
+    [(ngModel)]="selectedDay"
+    (change)="onDayChange($event)"
+    class="border border-gray-300 rounded-md py-2 px-4 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-300 ease-in-out"
+  >
+    <option value="" disabled selected>Mau hari keberapa?</option>
+    <option value="/">Home</option>
+    <ng-container *ngFor="let day of days">
+      <option [value]="day">Day {{ day }}</option>
+    </ng-container>
+  </select>
+
+  <div *ngIf="selectedDay !== null" class="flex-grow w-full p-4 mt-4 max-w-screen rounded bg-white shadow">
+    <router-outlet class=""></router-outlet>
+  </div>
+</div>
