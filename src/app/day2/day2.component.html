@@ -1,1 +1,246 @@
-<p>day2 works!</p>
+<div class="container  bg-secondary py-4">
+<!-- Interpolation -->
+  <img src="{{urlInterpolation}}" alt="">
+  <!-- Properti Binding -->
+  <img [src]="urlDataBinding"  alt="">
+
+  <button (click)="OnChangeImage('https://icons.iconarchive.com/icons/microsoft/fluentui-emoji-3d/256/Atom-Symbol-3d-icon.png')"
+          class="btn btn-lg btn-primary">Change Image</button>
+
+
+  <div>
+    <input type="text"
+          [(ngModel)]="name"
+          class="form-control mt-3"
+          placeholder="Enter your name"/>
+  </div>
+
+  <p>
+    {{name}}
+  </p>
+</div>
+
+<hr class="border-gray-300 my-4" />
+
+<!-- ==================================================================== -->
+
+<p class="text-danger">Dibawah ini berkas</p>
+<app-berkas></app-berkas>
+
+<hr class="border-gray-300 my-4" />
+
+<!-- ==================================================================== -->
+  <div class="container py-4">
+    <div class="row">
+      <!-- INFO PRODUCT -->
+      <div class="col-md-3">
+        <div class="card shadow">
+          <img [src]="product.variants[0].picture" class="card-img-top" />
+
+          <div class="card-body">
+            <h5 class="card-title">{{ product.title }}</h5>
+            <p class="card-text">
+              {{ product.description }}
+            </p>
+          </div>
+          <!-- <ul class="list-group list-group-flush">
+            <li class="list-group-item" *ngFor="let warna of product.pilihanWarna">
+              {{ warna }}
+            </li>
+          </ul> -->
+          <div class="card-footer bg-primary text-white">IDR {{ product.price }}</div>
+        </div>
+      </div>
+      <!-- FORM PRODUCT -->
+      <div class="col-md-9">
+        <ul ngbNav #nav="ngbNav" [(activeId)]="active" class="nav-tabs">
+          <!-- DETAIL PRODUCT -->
+          <li [ngbNavItem]="1">
+            <button ngbNavLink>Detail Product</button>
+            <ng-template ngbNavContent>
+              <div class="card mb-3 shadow">
+                <div class="card-body">
+                  <h5 class="card-title">Form Product</h5>
+                  <div class="form-group mb-3">
+                    <label>Nama</label>
+                    <input
+                      type="text"
+                      class="form-control"
+                      [(ngModel)]="product.title"
+                    />
+                  </div>
+                  <div class="form-group mb-3">
+                    <label>Description</label>
+                    <textarea
+                      class="form-control"
+                      [(ngModel)]="product.description"
+                    ></textarea>
+                  </div>
+                  <div class="form-group mb-3">
+                    <label>Harga</label>
+                    <input
+                      type="number"
+                      class="form-control"
+                      [(ngModel)]="product.price"
+                    />
+                  </div>
+                  <!-- <div class="form-group mb-3">
+              <label>Image URL</label>
+              <input type="text" class="form-control" [(ngModel)]="product.foto" />
+            </div> -->
+                </div>
+              </div>
+            </ng-template>
+          </li>
+          <!-- METADATA PRODUCT -->
+          <li [ngbNavItem]="2">
+            <button ngbNavLink>Product Metadata</button>
+            <ng-template ngbNavContent>
+              <div class="card shadow">
+                <div class="card-body">
+                  <h5 class="card-title">Meta Data</h5>
+                  <div class="row mb-3">
+                    <div class="col">
+                      <div class="form-group">
+                        <label>Key</label>
+                        <input
+                          type="text"
+                          class="form-control"
+                          [(ngModel)]="productVariant.key"
+                        />
+                      </div>
+                    </div>
+                    <div class="col">
+                      <div class="form-group">
+                        <label>Value</label>
+                        <input
+                          type="text"
+                          class="form-control"
+                          [(ngModel)]="productVariant.value"
+                        />
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row mb-3">
+                    <div class="col">
+                      <div class="form-group">
+                        <label>Picture</label>
+                        <input
+                          type="text"
+                          class="form-control"
+                          [(ngModel)]="productVariant.picture"
+                        />
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row mb-3">
+                    <div class="col">
+                      <button class="btn btn-primary" (click)="addVariant()">
+                        Add Variant
+                      </button>
+                      <button class="btn btn-primary" (click)="updateVariant()">
+                        Update Variant
+                      </button>
+                    </div>
+                  </div>
+                  <table class="hover striped">
+                    <thead>
+                      <tr>
+                        <th>Key</th>
+                        <th>Value</th>
+                        <th>Picture</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr *ngFor="let variant of product.variants; let i = index">
+                        <td>{{ variant.key }}</td>
+                        <td>{{ variant.value }}</td>
+                        <td>
+                          <img
+                            [src]="variant.picture"
+                            class="img-thumbnail"
+                            width="100"
+                          />
+                        </td>
+                        <td>
+                          <button
+                            (click)="getVariant(variant)"
+                            class="btn btn-warning"
+                          >
+                            Edit
+                          </button>
+                          <button (click)="deleteVariant(i)" class="btn btn-danger">
+                            Delete
+                          </button>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </ng-template>
+          </li>
+        </ul>
+
+        <div [ngbNavOutlet]="nav" class="mt-2"></div>
+
+        <!-- <div class="card mb-3 shadow">
+          <div class="card-body">
+            <h5 class="card-title">Product Variant Warna</h5>
+            <div class="input-group mb-3">
+              <input type="text" [(ngModel)]="variantWarna" class="form-control" />
+              <button
+                class="btn btn-outline-secondary"
+                type="button"
+                id="button-addon2"
+                (click)="addWarna()"
+              >
+                Add
+              </button>
+            </div>
+          </div>
+        </div> -->
+      </div>
+    </div>
+  </div>
+<!-- ==================================================================== -->
+
+<hr class="border-gray-300 my-4" />
+
+<div class="container bg-secondary py-4">
+  <p class="text-light">Dibawah ini To Do</p>
+  <h3>Todo List</h3>
+
+  <div class="input-group mb-3">
+    <input
+        type="text"
+        class="form-control me-2"
+        [(ngModel)]="todo.task"
+        placeholder="Enter your Todo"
+    />
+    <button (click)="addTodo()" class="btn btn-lg btn-primary">Add</button>
+  </div>
+
+  <table class="table table-hover table-striped">
+    <thead>
+      <tr>
+        <th>Task</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let todo of todos; let i = index">
+        <td>{{ todo.task }}</td>
+        <td>
+          <button (click)="deleteTodo(i)" class="btn btn-danger">
+            Delete
+          </button>
+        </td>
+      </tr>
+      <tr>
+        <td colspan="2">Total: {{ todos.length }}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
