@@ -1,5 +1,6 @@
 import { Component, EventEmitter, Output } from '@angular/core';
 import { ITodo } from '../../interfaces/i-todo';
+import { faPlusCircle } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-todo-form',
@@ -7,7 +8,12 @@ import { ITodo } from '../../interfaces/i-todo';
   styleUrl: './todo-form.component.css'
 })
 export class TodoFormComponent {
-  @Output() evenEmitter: EventEmitter<ITodo> = new EventEmitter();
+  icons = {
+    add: faPlusCircle,
+  };
+
+  @Output() eventEmitter: EventEmitter<ITodo> = new EventEmitter();
+  @Output() onSearch: EventEmitter<string> = new EventEmitter();
   todo: ITodo = {
     id: 0,
     task: '',
@@ -16,6 +22,12 @@ export class TodoFormComponent {
 
 
   add(){
-    this.evenEmitter.emit(this.todo);
+    this.eventEmitter.emit(this.todo);
+  }
+
+  search() {
+    console.log(this.todo.task);
+
+    this.onSearch.emit(this.todo.task);
   }
 }

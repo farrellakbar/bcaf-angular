@@ -15,6 +15,8 @@ import { TodoListComponent } from './features/todos/components/todo-list/todo-li
 import { TodoDetailComponent } from './features/todos/components/todo-detail/todo-detail.component';
 import { TodoTotalComponent } from './features/todos/components/todo-total/todo-total.component';
 import { AttrDirective } from './attr.directive';
+import { Day4Component } from './day4/day4.component';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 @NgModule({
   declarations: [
@@ -28,13 +30,15 @@ import { AttrDirective } from './attr.directive';
     TodoListComponent,
     TodoDetailComponent,
     TodoTotalComponent,
-    AttrDirective
+    AttrDirective,
+    Day4Component
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    NgbModule
+    NgbModule,
+    FontAwesomeModule
   ],
   providers: [],
   bootstrap: [AppComponent, Day2Component,Day3Component, BerkasComponent]

@@ -1,7 +1,10 @@
-<div class="card bg-light">
+<div class="card shadow">
   <div class="card-body">
-    <h5 class="card-title">APP Todo</h5>
-    <app-todo-form (evenEmitter)="onAdd($event)"></app-todo-form>
+    <h5 class="card-title">Todo App</h5>
+    <app-todo-form
+      (eventEmitter)="add($event)"
+      (onSearch)="search($event)"
+    ></app-todo-form>
   </div>
   <app-todo-list
     [todos]="todos"
@@ -11,8 +14,3 @@
     <app-todo-total [todos]="todos"></app-todo-total>
   </div>
 </div>
-<pre>
-  {{ todos | json }}
-</pre>
-
-
