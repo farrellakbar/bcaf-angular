@@ -1,0 +1,18 @@
+<div class="card bg-light">
+  <div class="card-body">
+    <h5 class="card-title">APP Todo</h5>
+    <app-todo-form (evenEmitter)="onAdd($event)"></app-todo-form>
+  </div>
+  <app-todo-list
+    [todos]="todos"
+    (eventEmitter)="remove($event)"
+  ></app-todo-list>
+  <div class="card-footer">
+    <app-todo-total [todos]="todos"></app-todo-total>
+  </div>
+</div>
+<pre>
+  {{ todos | json }}
+</pre>
+
+

@@ -1,0 +1,117 @@
+<app-berkas
+  [oncom]="counter"
+  [product]="product"
+  (emit)="handler($event)"
+></app-berkas>
+
+<h1>Container Component - <span class="text-danger">Ini Parent</span></h1>
+{{ counter }}
+
+
+<!-- ================================================================================ -->
+
+<hr class="border-gray-300 my-4" />
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-4">
+      <app-todo></app-todo>
+    </div>
+    <!-- <div class="col-md-4">
+      <app-todo></app-todo>
+    </div> -->
+  </div>
+</div>
+
+<!-- ================================================================================ -->
+<hr class="border-gray-300 my-4" />
+
+<h1>CHANGE FONT SIZE</h1>
+
+<div class="form-group">
+  <label>Font Size</label>
+  <input type="number" [(ngModel)]="fontSize" class="form-control" />
+</div>
+
+<div
+  (click)="isActive = !isActive"
+  [ngStyle]="{ 'fontSize.px': fontSize, color: isActive ? 'blue' : 'gray',  }"
+>
+  Lorem ipsum dolor sit amet consectetur adipisicing elit. Sunt, recusandae,
+  illum cum qui voluptates obcaecati sit aut dolorum, vitae sint in! Cumque
+  quibusdam nam reiciendis impedit quam a ipsam cupiditate.
+</div>
+<h1>CHANGE COLOR</h1>
+<div [ngStyle]="myObjectClass">
+  Lorem ipsum dolor sit amet consectetur adipisicing elit. Cumque nobis sed
+  exercitationem temporibus itaque rerum neque atque amet commodi, eveniet totam
+  soluta molestiae minima asperiores debitis aliquid perspiciatis recusandae
+  minus.
+</div>
+
+<div [ngStyle]="myStyleClass" (click)="onChangeColor()">
+  Lorem ipsum, dolor sit amet consectetur adipisicing elit. Molestiae, eos?
+  Impedit suscipit tempore maiores aliquid voluptates, quas eveniet delectus non
+  consequatur vel aliquam officia ratione voluptate vero, corporis dolorum
+  laboriosam.
+</div>
+<!-- ================================================================================ -->
+
+<hr class="border-gray-300 my-4" />
+
+<h1>Ini ngIf</h1>
+<div class="form-group">
+  <input type="checkbox" [(ngModel)]="show" />
+  Aktifkan
+</div>
+
+<h1>Cara ngIf 1</h1>
+<h5 *ngIf="show">Show = True</h5>
+<h5 *ngIf="!show">Show = False</h5>
+
+<h1>Cara ngIf 2</h1>
+<h5 *ngIf="show; else a1">Show = True</h5>
+<ng-template #a1>
+  <h5>Show = False</h5>
+</ng-template>
+
+<h1>Cara ngIf 3</h1>
+<h5 *ngIf="show; then b1; else b2">Show = True2</h5>
+<ng-template #b1>
+  <h5>Show = True1</h5>
+</ng-template>
+<ng-template #b2>
+  <h5>Show = False</h5>
+</ng-template>
+
+
+<!-- ================================================================================ -->
+
+<hr class="border-gray-300 my-4" />
+
+<h1>Products</h1>
+<table [border]="1" class="table table-bordered">
+  <thead>
+    <tr>
+      <th>Title</th>
+      <th>Stock</th>
+      <th>Price</th>
+      <th>Categories</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr
+        *ngFor="let product of products"
+        [appAttr]="{ isDone: product.stock >= 30, color: 'text-white' }"
+    >
+      <td>{{ product.title }}</td>
+      <td>{{ product.stock }}</td>
+      <td>{{ product.price }}</td>
+      <td>
+        <div *ngFor="let category of product.categories">
+          <span>{{ category.name }}</span>
+        </div>
+      </td>
+    </tr>
+  </tbody>
+</table>

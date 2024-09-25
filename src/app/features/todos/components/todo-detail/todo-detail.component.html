@@ -1,0 +1,32 @@
+<li class="list-group-item d-flex justify-content-between align-items-start">
+  <div class="ms-2 me-auto">
+    <div *ngIf="!isEdit" class="fw-bold" [ngClass]="getClass(todo.isDone)">
+      <input type="checkbox" [(ngModel)]="todo.isDone" />
+      {{ todo.task }}
+    </div>
+    <div *ngIf="isEdit" class="fw-bold" [ngClass]="getClass(todo.isDone)">
+      <input
+        type="text"
+        (keyup.enter)="edit()"
+        [(ngModel)]="todo.task"
+        class="form-control"
+      />
+    </div>
+  </div>
+  <div class="btn-group" role="group" aria-label="Basic example">
+    <button *ngIf="!isEdit" (click)="remove()" class="btn btn-sm btn-danger">
+      Remove
+    </button>
+    <button
+      (click)="edit()"
+      class="btn btn-sm"
+      [ngClass]="{ 'btn-success': isEdit, 'btn-warning': !isEdit }"
+    >
+      {{ isEdit ? "Save" : "Edit" }}
+    </button>
+
+    <button *ngIf="isEdit" (click)="edit()" class="btn btn-sm btn-secondary">
+      Cancel
+    </button>
+  </div>
+</li>
