@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { ITodo } from '../../interfaces/i-todo';
+import { TodoService } from '../../../../cores/services/todo.service';
 
 let MOCK_DATA = [
   {
@@ -27,7 +28,16 @@ let MOCK_DATA = [
 export class TodoComponent {
   isEdit: boolean = false;
 
+  @Input() title: string = 'App Todo';
+  @Input() forTrash: boolean = false;
+
   todos: ITodo[] = MOCK_DATA;
+
+  constructor(private todoService: TodoService) {}
+
+  getAll() {
+    return this.todoService.getTodos();
+  }
 
   add(todo: ITodo) {
     let payload: ITodo = { ...todo };
@@ -35,11 +45,14 @@ export class TodoComponent {
     this.todos.push(payload);
   }
   search(query: string) {
-
-    let results = MOCK_DATA.filter((value: ITodo) =>
-      value.task.toLowerCase().includes(query.toLowerCase())
+    let todosCopy: ITodo[] = [...this.todos];
+    let results = todosCopy.filter((value: ITodo) =>
+      value.task.includes(query)
     );
-    console.log(results.length);
+    // let results = MOCK_DATA.filter((value: ITodo) =>
+    //   value.task.toLowerCase().includes(query.toLowerCase())
+    // );
+    // console.log(results.length);
 
     if (results.length >= 0) {
       this.todos = results;

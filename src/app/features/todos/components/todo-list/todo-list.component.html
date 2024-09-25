@@ -1,7 +1,7 @@
 <ol class="list-group list-group-numbered">
   <app-todo-detail
-    *ngFor="let todo of todos"
+    *ngFor="let todo of getTodos()"
     [todo]="todo"
-    (eventEmitter)="remove($event)"
+    [forTrash]="forTrash"
   ></app-todo-detail>
 </ol>

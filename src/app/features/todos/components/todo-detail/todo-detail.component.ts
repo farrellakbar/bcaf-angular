@@ -6,7 +6,9 @@ import {
   faClose,
   faTrash,
   faCheckCircle,
+  faUndo
 } from '@fortawesome/free-solid-svg-icons';
+import { TodoService } from '../../../../cores/services/todo.service';
 
 @Component({
   selector: 'app-todo-detail',
@@ -20,15 +22,22 @@ export class TodoDetailComponent {
     remove: faTrash,
     checklist: faCheckCircle,
     cancel: faClose,
+    restore: faUndo,
   };
 
   isEdit: boolean = false;
   isConfirmRemove: boolean = false;
   @Input() todo!: ITodo;
-  @Output() eventEmitter: EventEmitter<number> = new EventEmitter();
+  @Input() forTrash: boolean = false;
+
+  // @Output() eventEmitter: EventEmitter<number> = new EventEmitter();
+  constructor(private todoService: TodoService) {}
 
   remove(){
-    this.eventEmitter.emit(this.todo.id);
+    // this.eventEmitter.emit(this.todo.id);
+    this.todoService.removeTodo(this.todo.id);
+    this.todoService.moveToTrash(this.todo);
+
   }
 
   edit() {
@@ -41,5 +50,9 @@ export class TodoDetailComponent {
     }
 
     return '';
+  }
+
+  restore() {
+    this.todoService.restore(this.todo.id);
   }
 }

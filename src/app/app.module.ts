@@ -17,6 +17,7 @@ import { TodoTotalComponent } from './features/todos/components/todo-total/todo-
 import { AttrDirective } from './attr.directive';
 import { Day4Component } from './day4/day4.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { TodoService } from './cores/services/todo.service';
 
 @NgModule({
   declarations: [
@@ -40,7 +41,7 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
     NgbModule,
     FontAwesomeModule
   ],
-  providers: [],
+  providers: [TodoService],
   bootstrap: [AppComponent, Day2Component,Day3Component, BerkasComponent]
 })
 export class AppModule { }

@@ -1,16 +1,10 @@
 <div class="card shadow">
   <div class="card-body">
-    <h5 class="card-title">Todo App</h5>
-    <app-todo-form
-      (eventEmitter)="add($event)"
-      (onSearch)="search($event)"
-    ></app-todo-form>
+    <h5 class="card-title">{{ title }}</h5>
+    <app-todo-form *ngIf="!forTrash"></app-todo-form>
   </div>
-  <app-todo-list
-    [todos]="todos"
-    (eventEmitter)="remove($event)"
-  ></app-todo-list>
-  <div class="card-footer">
-    <app-todo-total [todos]="todos"></app-todo-total>
+  <app-todo-list [forTrash]="forTrash" [todos]="todos"></app-todo-list>
+  <div class="card-footer bg-info-subtle">
+    <app-todo-total [forTrash]="forTrash"></app-todo-total>
   </div>
 </div>

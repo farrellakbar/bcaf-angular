@@ -12,16 +12,17 @@
 
 <hr class="border-gray-300 my-4" />
 
-<div class="container">
+<div class="container mt-5">
   <div class="row">
     <div class="col-md-4">
       <app-todo></app-todo>
     </div>
-    <!-- <div class="col-md-4">
-      <app-todo></app-todo>
-    </div> -->
+    <div class="col-md-4">
+      <app-todo [title]="'Trash'" [forTrash]="true"></app-todo>
+    </div>
   </div>
 </div>
+
 
 <!-- ================================================================================ -->
 <hr class="border-gray-300 my-4" />
