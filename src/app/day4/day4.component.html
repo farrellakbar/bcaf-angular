@@ -1,1 +1,68 @@
-<p>day4 works!</p>
+<!-- <div class="container mt-5">
+  <div class="row">
+    <div class="col-md-4">
+      <app-todo></app-todo>
+    </div>
+    <div class="col-md-4">
+      <app-todo [title]="'Trash'" [forTrash]="true"></app-todo>
+    </div>
+  </div>
+</div> -->
+
+<p>Tanggal: {{ tanggal | indodate : "long" }}</p>
+
+<h1>Date tanpa Pipe</h1>
+
+<p>Tanggal: {{ tanggal }}</p>
+<p>Timestamp: {{ timestamp }}</p>
+<p>Tanggal String: {{ tanggalStr }}</p>
+
+<h1>Date Expression</h1>
+<p>Tanggal: {{ tanggal | date }}</p>
+<p>Timestamp: {{ timestamp | date }}</p>
+<p>Tanggal String: {{ tanggalStr | date }}</p>
+
+<h1>Date Format</h1>
+<p>Tanggal: {{ tanggal | date : "short" }}</p>
+<p>Timestamp: {{ timestamp | date : "medium" }}</p>
+<p>Tanggal String: {{ tanggalStr | date : "long" }}</p>
+<p>Tanggal String: {{ tanggalStr | date : "fullDate" }}</p>
+
+<h1>Custom Format String</h1>
+<p>Tanggal: {{ tanggal | date : "dd/MM/yyy" }}</p>
+<p>Timestamp: {{ timestamp | date : "dd/MM/yy HH:mm" }}</p>
+<p>Tanggal String: {{ tanggalStr | date : "dd LLLL yyyy, Pukul hh:mm aa" }}</p>
+
+<h1>Timezone</h1>
+https://en.wikipedia.org/wiki/List_of_time_zones_by_country
+<p>Tanggal: {{ tanggal | date : "short" : "+0700" }}</p>
+<p>Tanggal: {{ tanggal | date : "short" : "+0800" }}</p>
+<p>Timestamp: {{ timestamp | date : "medium" : "+0700" }}</p>
+<p>Timestamp: {{ timestamp | date : "medium" : "+0800" }}</p>
+<p>Tanggal String: {{ tanggalStr | date : "long" : "+0700" }}</p>
+<p>Tanggal String: {{ tanggalStr | date : "long" : "+0800" }}</p>
+
+<h1>GMT</h1>
+https://docs.sentinel.thalesgroup.com/softwareandservices/ems/EMSdocs/WSG/Content/TimeZone.htm
+<p>Tanggal: {{ tanggal | date : "dd/MM/yy HH:mm aa" : "GMT+07:00" }}</p>
+<p>Tanggal: {{ tanggal | date : "dd/MM/yy HH:mm aa" : "GMT+09:00" }}</p>
+
+<hr />
+
+<h4>{{ teks | uppercase }}</h4>
+<h4>{{ teks | lowercase }}</h4>
+<h4>slice {{ teks | slice : 1 : 3 }}</h4>
+<h4>slice {{ teks | slice : 9 }}</h4>
+<h4>Slice Pipe : {{ teks | slice : -12 : -8 }}</h4>
+
+<h4>Number Pipe : {{ angka | number }}</h4>
+
+<h4>Number Pipe : {{ desimal | number : ".1-3" }}</h4>
+<h4>Number Pipe : {{ desimal | number : ".1-4" }}</h4>
+
+<h4>Persente Pipe : {{ persen | percent }}</h4>
+<h4>Persente Pipe : {{ persen | percent : ".2" }}</h4>
+<h4>{{ 10 }}%</h4>
+
+<h4>Currency Pipe : {{ harga | currency }}</h4>
+<h4>Currency Pipe : {{ harga | currency : "IDR" : true : ".2" }}</h4>

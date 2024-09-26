@@ -1,12 +1,20 @@
 import { Pipe, PipeTransform } from '@angular/core';
 
 @Pipe({
-  name: 'indodate'
+  name: 'indodate',
 })
 export class IndodatePipe implements PipeTransform {
+  transform(value: Date, dateStyle: string = 'long'): string {
+    // let a: ResolvedDateTimeFormatOptions = {
 
-  transform(value: Date, dateStyle: string=""): unknown {
-    return null;
+    // };
+
+    let a: any = {
+      dateStyle: dateStyle,
+      timeStyle: 'short',
+      timeZone: 'Asia/Jakarta',
+    };
+
+    return new Intl.DateTimeFormat('id-ID', a).format(value);
   }
-
 }
