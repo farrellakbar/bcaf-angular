@@ -18,6 +18,8 @@ import { AttrDirective } from './attr.directive';
 import { Day4Component } from './day4/day4.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { TodoService } from './cores/services/todo.service';
+import { IndodatePipe } from './indodate.pipe';
+import { Day5Component } from './day5/day5.component';
 
 @NgModule({
   declarations: [
@@ -32,7 +34,9 @@ import { TodoService } from './cores/services/todo.service';
     TodoDetailComponent,
     TodoTotalComponent,
     AttrDirective,
-    Day4Component
+    Day4Component,
+    IndodatePipe,
+    Day5Component
   ],
   imports: [
     BrowserModule,
