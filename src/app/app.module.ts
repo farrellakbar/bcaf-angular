@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { LOCALE_ID, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
 
@@ -20,6 +20,13 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { TodoService } from './cores/services/todo.service';
 import { IndodatePipe } from './indodate.pipe';
 import { Day5Component } from './day5/day5.component';
+import { HttpClientModule, provideHttpClient } from '@angular/common/http';
+import { UserService } from './cores/services/user.service';
+import { CustomerChoiceComponent } from './features/customers/components/customer-choice/customer-choice.component';
+import { CustomerDetailComponent } from './features/customers/components/customer-detail/customer-detail.component';
+import { CustomerListComponent } from './features/customers/components/customer-list/customer-list.component';
+import { CustomerSearchComponent } from './features/customers/components/customer-search/customer-search.component';
+import { ReservasiCreateComponent } from './features/reservasis/components/reservasi-create/reservasi-create.component';
 
 @NgModule({
   declarations: [
@@ -36,16 +43,26 @@ import { Day5Component } from './day5/day5.component';
     AttrDirective,
     Day4Component,
     IndodatePipe,
-    Day5Component
+    Day5Component,
+    CustomerChoiceComponent,
+    CustomerDetailComponent,
+    CustomerListComponent,
+    CustomerSearchComponent,
+    ReservasiCreateComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
     NgbModule,
-    FontAwesomeModule
+    FontAwesomeModule,
   ],
-  providers: [TodoService],
+  providers: [
+    provideHttpClient(),
+    TodoService,
+    { provide: LOCALE_ID, useValue: 'id-ID' },
+    UserService,
+  ],
   bootstrap: [AppComponent, Day2Component,Day3Component, BerkasComponent]
 })
 export class AppModule { }

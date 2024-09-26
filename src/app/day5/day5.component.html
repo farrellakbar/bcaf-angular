@@ -1,1 +1,32 @@
-<p>day5 works!</p>
+<div class="container">
+  <!-- Spinner loading indikator -->
+  <div *ngIf="loading" class="text-center">
+    <div class="spinner-border" role="status">
+      <span class="visually-hidden">Loading...</span>
+    </div>
+  </div>
+
+  <!-- Data user -->
+  <div *ngIf="!loading">
+    <ul class="list-group">
+      <li *ngFor="let user of users" class="list-group-item">
+        {{ user.name }}
+      </li>
+    </ul>
+  </div>
+</div>
+
+<!-- ================================================================= -->
+
+<hr class="border-gray-300 my-4" />
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-4">
+      <app-customer-choice></app-customer-choice>
+    </div>
+    <div class="col-md-8">
+      <app-reservasi-create></app-reservasi-create>
+    </div>
+  </div>
+</div>
