@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { IReservasi } from '../interfaces/i-reservasi';
 import { Reservasi } from '../models/reservasi';
 import { ICustomer } from '../interfaces/i-customer';
-import { Observable } from 'rxjs';
+import { catchError, Observable, of } from 'rxjs';
 import { environment } from '../../../environments/environment.development';
 import { IPagination } from '../interfaces/i-pagination';
 import { Pagination } from '../models/pagination';
@@ -31,7 +31,7 @@ export class ReservasiService {
     }
   //CLOSE RESERVASI
 
-  //OPEN RESERVASI
+  //OPEN RESERVASI (table list with pagination)
     //GET
     get reservations(): IPagination<IReservasi[]> {
       return this._reservations;
@@ -40,18 +40,34 @@ export class ReservasiService {
     set reservations(data: IPagination<IReservasi[]>) {
       this._reservations = data;
     }
-  //CLOSE RESERVASI
+  //CLOSE RESERVASI (table list with pagination)
 
 
   set customer(data: ICustomer) {
     this._reservasi.customer = data;
   }
 
-  public all(page: number = 1, query: string = ''): Observable<IPagination<IReservasi[]>> {
+  //BEFORE PAGINATION
+  // public all(): Observable<IReservasi[]> {
+  //   return this.http.get<IReservasi[]>(
+  //     `${environment.BASE_URL_LOCAL}/reservasi`
+  //   );
+  // }
+  //AFTER PAGINATION
+  public all(page: number = 1, query: string = '', pageSize: number = 5): Observable<IPagination<IReservasi[]>> {
+    const searchQuery = encodeURIComponent(query);  // menghindari karakter-karakter khusus
+
     return this.http.get<IPagination<IReservasi[]>>(
-      `${environment.BASE_URL_LOCAL}/reservasi?customer.name=${query}&_page=${page}&_per_page=5`
+      `${environment.BASE_URL_LOCAL}/reservasi?customer.name=${searchQuery}&_page=${page}&_per_page=${pageSize}`
+    ).pipe(
+      catchError(error => {
+        console.error('Error fetching data', error);
+        return of({ first: 1, prev: 0, next: 0, last: 0, pages: 0, items: 0, data: [] });
+      })
     );
   }
+
+
 
   create(time: {
     hour: string | number;

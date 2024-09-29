@@ -1,4 +1,4 @@
-import { Directive, ElementRef, Input, OnInit } from '@angular/core';
+import { Directive, ElementRef, Input, OnInit, SimpleChanges } from '@angular/core';
 
 @Directive({
   selector: '[appCustomerStatus]',
@@ -9,14 +9,26 @@ export class CustomerStatusDirective implements OnInit {
   constructor(private el: ElementRef) {}
 
   ngOnInit() {
-    console.log(this.appCustomerStatus);
+    this.updateStatus();
+  }
 
+  ngOnChanges(changes: SimpleChanges) {
+    if (changes['appCustomerStatus']) {
+      this.updateStatus();
+    }
+  }
+
+  private updateStatus() {
+    // Hapus class sebelumnya agar tidak ada konflik
+    this.el.nativeElement.classList.remove('text-bg-success', 'text-bg-danger', 'text-bg-secondary');
+
+    // Update class berdasarkan status
     if (this.appCustomerStatus === 'lunas') {
       this.el.nativeElement.classList.add('badge', 'text-bg-success');
     } else if (this.appCustomerStatus === 'macet') {
       this.el.nativeElement.classList.add('badge', 'text-bg-danger');
     } else {
-      this.el.nativeElement.classList.add('badge', 'text-bg-secondary'); // Perbaiki typo 'secodary' menjadi 'secondary'
+      this.el.nativeElement.classList.add('badge', 'text-bg-warning');
     }
   }
 }

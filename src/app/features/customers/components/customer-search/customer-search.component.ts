@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { CustomerService } from '../../../../cores/services/customer.service';
 import { ICustomer } from '../../../../cores/interfaces/i-customer';
 import { faSearch } from '@fortawesome/free-solid-svg-icons';
+import { IPagination } from '../../../../cores/interfaces/i-pagination';
 
 @Component({
   selector: 'app-customer-search',
@@ -14,12 +15,14 @@ export class CustomerSearchComponent {
   icons = {
     search: faSearch,
   }
+  page: number = 1;
 
   constructor(private customerService: CustomerService) {}
   onSearch() {
+    this.page = 1;
     this.customerService
-      .search(this.field, this.query)
-      .subscribe((resp: ICustomer[]) => {
+      .all(this.page, this.query)
+      .subscribe((resp: IPagination<ICustomer[]>) => {
         this.customerService.customers = resp;
       });
   }

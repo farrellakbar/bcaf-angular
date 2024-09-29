@@ -4,7 +4,7 @@
     class="form-control"
     placeholder="Search..."
     [(ngModel)]="query"
-    (keydown.enter)="onSearch()"
+    (keyup)="onSearch()"
   />
 
   <button class="btn btn-primary" type="button" (click)="onSearch()">

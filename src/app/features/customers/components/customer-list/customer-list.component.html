@@ -1,13 +1,39 @@
-<div *ngIf="!customers || customers.length === 0">
+<div *ngIf="loadingCustomerList">
   <!-- Spinner saat data belum ada -->
   <div class="spinner-border" role="status">
     <span class="visually-hidden">Loading...</span>
   </div>
 </div>
 
-<ol *ngIf="customers && customers.length > 0" class="list-group list-group-numbered">
-  <app-customer-detail
-    *ngFor="let customer of customers"
-    [customer]="customer"
-  ></app-customer-detail>
-</ol>
+<!-- Tabel untuk menampilkan data customer -->
+<div class="table-responsive">
+  <table *ngIf="!loadingCustomerList" class="table table-striped">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Name</th>
+        <th scope="col">Email</th>
+        <th scope="col">Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let customer of customers.data; let i = index">
+        <th scope="row">{{ (page - 1) * 5 + (i + 1) }}</th>
+        <td>{{ customer.name }}</td>
+        <td>{{ customer.email }}</td>
+        <td>
+          <button (click)="customerReservasi(customer)" class="btn btn-outline-warning btn-sm">Klik!</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+
+<!-- Pagination -->
+<ngb-pagination
+  [(page)]="page"
+  [pageSize]="5"
+  [collectionSize]="customers.items"
+  (pageChange)="onPaginate($event)">
+</ngb-pagination>
