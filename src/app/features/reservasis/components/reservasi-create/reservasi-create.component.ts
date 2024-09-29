@@ -12,6 +12,7 @@ export class ReservasiCreateComponent {
   // reservasi!: IReservasi;
   // diatasi dengan
   // reservasi: IReservasi = new Reservasi();
+  time = { hour: 13, minute: 30 };
 
   constructor(private reservasiService: ReservasiService) {}
 
@@ -22,5 +23,13 @@ export class ReservasiCreateComponent {
   set reservasi(data: IReservasi) {
     this.reservasiService.reservasi = data;
   }
+  onCreate() {
+    this.reservasiService.create(this.time).subscribe((resp: IReservasi) => {
+      console.log(resp);
+    });
+  }
 
+  onGetReservation(data: IReservasi) {
+    this.reservasiService.reservasi = data;
+  }
 }

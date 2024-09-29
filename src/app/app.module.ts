@@ -7,7 +7,7 @@ import { AppComponent } from './app.component';
 import { Day1Component } from './day1/day1.component';
 import { Day2Component } from './day2/day2.component';
 import { BerkasComponent } from './berkas/berkas.component';
-import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { NgbModule, NgbTimepickerModule } from '@ng-bootstrap/ng-bootstrap';
 import { Day3Component } from './day3/day3.component';
 import { TodoComponent } from './features/todos/components/todo/todo.component';
 import { TodoFormComponent } from './features/todos/components/todo-form/todo-form.component';
@@ -27,6 +27,13 @@ import { CustomerDetailComponent } from './features/customers/components/custome
 import { CustomerListComponent } from './features/customers/components/customer-list/customer-list.component';
 import { CustomerSearchComponent } from './features/customers/components/customer-search/customer-search.component';
 import { ReservasiCreateComponent } from './features/reservasis/components/reservasi-create/reservasi-create.component';
+import { Day6Component } from './day6/day6.component';
+import { ReservasiChoiceComponent } from './features/reservasi/components/reservasi-choice/reservasi-choice.component';
+import { ReservasiDetailComponent } from './features/reservasi/components/reservasi-detail/reservasi-detail.component';
+import { ReservasiListComponent } from './features/reservasi/components/reservasi-list/reservasi-list.component';
+import { ReservasiSearchComponent } from './features/reservasi/components/reservasi-search/reservasi-search.component';
+import { ReservasiSisaComponent } from './features/reservasi/components/reservasi-sisa/reservasi-sisa.component';
+import { CustomerStatusDirective } from './features/customers/directives/customer-status.directive';
 
 @NgModule({
   declarations: [
@@ -48,7 +55,14 @@ import { ReservasiCreateComponent } from './features/reservasis/components/reser
     CustomerDetailComponent,
     CustomerListComponent,
     CustomerSearchComponent,
-    ReservasiCreateComponent
+    ReservasiCreateComponent,
+    Day6Component,
+    ReservasiChoiceComponent,
+    ReservasiDetailComponent,
+    ReservasiListComponent,
+    ReservasiSearchComponent,
+    ReservasiSisaComponent,
+    CustomerStatusDirective
   ],
   imports: [
     BrowserModule,
@@ -56,11 +70,12 @@ import { ReservasiCreateComponent } from './features/reservasis/components/reser
     FormsModule,
     NgbModule,
     FontAwesomeModule,
+    NgbTimepickerModule,
   ],
   providers: [
     provideHttpClient(),
     TodoService,
-    { provide: LOCALE_ID, useValue: 'id-ID' },
+    // { provide: LOCALE_ID, useValue: 'id-ID' },
     UserService,
   ],
   bootstrap: [AppComponent, Day2Component,Day3Component, BerkasComponent]
