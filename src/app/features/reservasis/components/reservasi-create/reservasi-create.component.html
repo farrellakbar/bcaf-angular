@@ -6,7 +6,10 @@
         (emitReservation)="onGetReservation($event)"
       ></app-reservasi-choice>
     </h5>
-    <div class="row mb-3 mt-3">
+    <div *ngIf="data">
+      {{ data | json }}
+    </div>
+    <!-- <div class="row mb-3 mt-3">
       <div class="col">
         <div class="form-group">
           <label>Nomor Kontrak</label>
@@ -69,7 +72,74 @@
           />
         </div>
       </div>
-    </div>
+    </div> -->
+    <form #form="ngForm" (submit)="onSubmit(form)">
+      <div class="row mb-3 mt-3">
+        <div class="col">
+          <div class="form-group">
+            <label>Nomor Kontrak</label>
+            <input
+              type="text"
+              class="form-control"
+              name="nomorKontrak"
+              ngModel
+              #nomorKontrak="ngModel"
+              required
+            />
+            <div
+              *ngIf="
+                !nomorKontrak.valid &&
+                (nomorKontrak.dirty || nomorKontrak.touched)
+              "
+              class="text-helper text-danger"
+            >
+              <span *ngIf="nomorKontrak.errors!['required']"
+                >Nomor kontrak is required</span
+              >
+            </div>
+          </div>
+        </div>
+        <div class="col">
+          <div class="form-group">
+            <label>Nomor BPKB</label>
+            <input type="text" class="form-control" name="nomorBPKB" ngModel />
+          </div>
+        </div>
+        <div class="col">
+          <div class="form-group">
+            <label>Tipe Kendaraan</label>
+            <select name="tipeKendaraan" ngModel class="form-control">
+              <option [ngValue]="'mobil'">Mobil</option>
+              <option [ngValue]="'motor'">Motor</option>
+            </select>
+          </div>
+        </div>
+      </div>
+      <div class="row mb-3 mt-3">
+        <div class="col">
+          <div class="form-group">
+            <label>Jadwal</label>
+            <input type="date" class="form-control" name="jadwal" ngModel />
+            <!-- <ngb-timepicker [(ngModel)]="time" /> -->
+          </div>
+        </div>
+        <div class="col">
+          <div class="form-group">
+            <label>Biaya Real</label>
+            <input type="number" class="form-control" name="real" ngModel />
+          </div>
+        </div>
+        <div class="col">
+          <div class="form-group">
+            <label>Biaya Estimasi</label>
+            <input type="number" class="form-control" name="estimasi" ngModel />
+          </div>
+        </div>
+      </div>
+      <button class="btn btn-primary" [disabled]="!form.valid" type="submit">
+        Submit
+      </button>
+    </form>
     <div class="row mb-3 mt-3">
       <app-customer-detail
         [customer]="reservasi.customer"

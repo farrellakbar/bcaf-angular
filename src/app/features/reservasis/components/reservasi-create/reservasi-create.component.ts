@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { IReservasi } from '../../../../cores/interfaces/i-reservasi';
 import { Reservasi } from '../../../../cores/models/reservasi';
 import { ReservasiService } from '../../../../cores/services/reservasi.service';
+import { NgForm } from '@angular/forms';
 
 @Component({
   selector: 'app-reservasi-create',
@@ -13,6 +14,7 @@ export class ReservasiCreateComponent {
   // diatasi dengan
   // reservasi: IReservasi = new Reservasi();
   time = { hour: 13, minute: 30 };
+  data: any;
 
   constructor(private reservasiService: ReservasiService) {}
 
@@ -31,5 +33,10 @@ export class ReservasiCreateComponent {
 
   onGetReservation(data: IReservasi) {
     this.reservasiService.reservasi = data;
+  }
+  onSubmit(form: NgForm) {
+    console.log('Data anda tidak lengkap!', form.valid);
+    this.data = form.value;
+    console.log(form.value);
   }
 }
