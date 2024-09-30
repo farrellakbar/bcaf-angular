@@ -20,10 +20,11 @@ export class CustomerStatusDirective implements OnInit {
 
   private updateStatus() {
     // Hapus class sebelumnya agar tidak ada konflik
-    this.el.nativeElement.classList.remove('text-bg-success', 'text-bg-danger', 'text-bg-secondary');
+    this.el.nativeElement.classList.remove('text-bg-success', 'text-bg-danger', 'text-bg-warning');
 
     // Update class berdasarkan status
     if (this.appCustomerStatus === 'lunas') {
+
       this.el.nativeElement.classList.add('badge', 'text-bg-success');
     } else if (this.appCustomerStatus === 'macet') {
       this.el.nativeElement.classList.add('badge', 'text-bg-danger');
