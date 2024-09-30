@@ -29,7 +29,29 @@ export class ReservasiCreateComponent {
     });
   }
 
+
   onGetReservation(data: IReservasi) {
     this.reservasiService.reservasi = data;
+  }
+
+  onUpdate() {}
+
+  whenReservationValid(timestamp: number) {
+    let dateNow: number = Date.parse(new Date().toISOString().split('T')[0]);
+    let reservationSchedule: number = Date.parse(
+      new Date(timestamp).toISOString().split('T')[0]
+    );
+
+    if (reservationSchedule > dateNow) {
+      return true;
+    }
+
+    return false;
+  }
+
+  onRemove() {
+    this.reservasiService.remove(this.reservasi.id).subscribe((resp: any) => {
+      this.reservasiService.reservasi = new Reservasi();
+    });
   }
 }

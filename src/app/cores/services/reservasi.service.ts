@@ -96,4 +96,10 @@ export class ReservasiService {
       }
     );
   }
+
+  remove(id: number | string) {
+    return this.http.delete<IReservasi>(
+      `${environment.BASE_URL_LOCAL}/reservasi/${id}/`
+    );
+  }
 }

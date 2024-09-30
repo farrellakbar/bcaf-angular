@@ -10,7 +10,6 @@
     <table *ngIf="!loadingCustomerList" class="table table-striped">
       <thead>
         <tr>
-          <th scope="col">#</th>
           <th scope="col">Name</th>
           <th scope="col">Email</th>
           <th scope="col">Action</th>
@@ -18,7 +17,6 @@
       </thead>
       <tbody>
         <tr *ngFor="let customer of customers.data; let i = index">
-          <th scope="row">{{ (page - 1) * 5 + (i + 1) }}</th>
           <td>{{ customer.name }}</td>
           <td>{{ customer.email }}</td>
           <td>
