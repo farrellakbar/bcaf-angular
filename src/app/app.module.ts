@@ -34,6 +34,8 @@ import { ReservasiListComponent } from './features/reservasi/components/reservas
 import { ReservasiSearchComponent } from './features/reservasi/components/reservasi-search/reservasi-search.component';
 import { ReservasiSisaComponent } from './features/reservasi/components/reservasi-sisa/reservasi-sisa.component';
 import { CustomerStatusDirective } from './features/customers/directives/customer-status.directive';
+import { Day7Component } from './day7/day7.component';
+import { MessageValidationComponent } from './shared/components/message-validation/message-validation.component';
 
 @NgModule({
   declarations: [
@@ -62,7 +64,9 @@ import { CustomerStatusDirective } from './features/customers/directives/custome
     ReservasiListComponent,
     ReservasiSearchComponent,
     ReservasiSisaComponent,
-    CustomerStatusDirective
+    CustomerStatusDirective,
+    Day7Component,
+    MessageValidationComponent
   ],
   imports: [
     BrowserModule,
