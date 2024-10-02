@@ -7,7 +7,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  days = Array.from({ length: 7 }, (_, i) => i + 1);
+  days = Array.from({ length: 8 }, (_, i) => i + 1);
   selectedDay: string | null = '/';
 
   constructor(private router: Router) {  }

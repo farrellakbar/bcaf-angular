@@ -1,6 +1,6 @@
 import { LOCALE_ID, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -36,6 +36,13 @@ import { ReservasiSisaComponent } from './features/reservasi/components/reservas
 import { CustomerStatusDirective } from './features/customers/directives/customer-status.directive';
 import { Day7Component } from './day7/day7.component';
 import { MessageValidationComponent } from './shared/components/message-validation/message-validation.component';
+import { Day8Component } from './day8/day8.component';
+import { CardComponent } from './components/card/card.component';
+import { NavigatorComponent } from './components/navigator/navigator.component';
+import { ContactComponent } from './pages/contact/contact.component';
+import { ErrorComponent } from './pages/error/error.component';
+import { HomeComponent } from './pages/home/home.component';
+import { ProductComponent } from './pages/product/product.component';
 
 @NgModule({
   declarations: [
@@ -66,7 +73,14 @@ import { MessageValidationComponent } from './shared/components/message-validati
     ReservasiSisaComponent,
     CustomerStatusDirective,
     Day7Component,
-    MessageValidationComponent
+    MessageValidationComponent,
+    Day8Component,
+    CardComponent,
+    NavigatorComponent,
+    ContactComponent,
+    ErrorComponent,
+    HomeComponent,
+    ProductComponent
   ],
   imports: [
     BrowserModule,
@@ -75,6 +89,7 @@ import { MessageValidationComponent } from './shared/components/message-validati
     NgbModule,
     FontAwesomeModule,
     NgbTimepickerModule,
+    ReactiveFormsModule,
   ],
   providers: [
     provideHttpClient(),
